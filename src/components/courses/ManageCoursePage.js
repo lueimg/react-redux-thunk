@@ -27,6 +27,7 @@ class ManageCoursePage extends Component {
     saveCourse(event) {
         event.preventDefault();
         this.props.actions.saveCourse(this.state.course);
+        this.context.router.push('/courses')
     }
 
     render () {
@@ -40,6 +41,10 @@ class ManageCoursePage extends Component {
         )
     }
 }
+
+ManageCoursePage.contextTypes = {
+    router: PropTypes.object
+};
 
 function mapStateToProps(state) {
     let course = {id: '', watchHref: '', title: '', authorId:'', length: '', category: ''};

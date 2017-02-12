@@ -38,6 +38,7 @@ CoursesPage.propTypes = {
     courses: React.PropTypes.array.isRequired
 };
 
+
 function mapStateToProps(state) {
     return {
         courses: state.courses
