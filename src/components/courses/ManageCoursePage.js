@@ -30,6 +30,12 @@ class ManageCoursePage extends Component {
         this.context.router.push('/courses')
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (this.props.course.id != nextProps.course.id) {
+            this.setState({course: Object.assign({}, nextProps.course)});
+        }
+    }
+
     render () {
         return (
             <CourseForm 
@@ -46,8 +52,20 @@ ManageCoursePage.contextTypes = {
     router: PropTypes.object
 };
 
-function mapStateToProps(state) {
+function getCourseById(courses, id) {
+    const course = courses.filter(course => course.id == id);
+    if (course) return course[0];
+    return null;
+}
+
+function mapStateToProps(state, ownProps) {
+    const courseId = ownProps.params.id;
+
     let course = {id: '', watchHref: '', title: '', authorId:'', length: '', category: ''};
+
+    if (courseId && state.courses.length > 0) {
+        course = getCourseById(state.courses, courseId);
+    }
 
     const authorsFormattedForDropdown = state.authors.map(author => {
         return {
