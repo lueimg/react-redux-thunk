@@ -24,11 +24,17 @@ class ManageCoursePage extends Component {
         return this.setState({course: course});
     }
     
+    saveCourse(event) {
+        event.preventDefault();
+        this.props.actions.saveCourse(this.state.course);
+    }
+
     render () {
         return (
             <CourseForm 
                     allAuthor={this.props.authors}
                     onChange={this.updateCourseState}
+                    onSave={this.saveCourse.bind(this)}
                     errors={this.state.errors}
                     course={this.state.course} />
         )
