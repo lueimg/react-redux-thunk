@@ -36,7 +36,7 @@ class ManageCoursePage extends Component {
 }
 
 function mapStateToProps(state) {
-    let course = {id: '', watchHref: '', title: '', authorId:'', length: '', categoru: ''}
+    let course = {id: '', watchHref: '', title: '', authorId:'', length: '', category: ''};
 
     const authorsFormattedForDropdown = state.authors.map(author => {
         return {
